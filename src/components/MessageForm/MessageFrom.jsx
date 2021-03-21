@@ -1,3 +1,5 @@
+import { Fab, TextField } from '@material-ui/core'
+import { Send } from '@material-ui/icons'
 import React from 'react'
 
 export class MessageForm extends React.Component{
@@ -34,16 +36,28 @@ export class MessageForm extends React.Component{
   render(){
     const {author, text} = this.state
 
-    return(
+    return (
       <>
         <div>
-          <input name='author' type='text' placeholder='Name' value={author} onChange={this.handleInputChange} onKeyDown={this.handlerKeyDown}/>
-        </div>
-        <div>
-          <textarea name='text' placeholder='Text' value={text} onChange={this.handleInputChange} onKeyDown={this.handlerKeyDown}/>
-        </div>
-        <div>
-          <button onClick={this.handleMessageSend}>Send</button>
+          <TextField
+            label="Name"
+            name="author"
+            type="text"
+            value={author}
+            onChange={this.handleInputChange}
+            onKeyDown={this.handlerKeyDown}
+          />
+          <TextField
+            name="text"
+            label="Text"
+            value={text}
+            multiline
+            onChange={this.handleInputChange}
+            onKeyDown={this.handlerKeyDown}
+          />
+          <Fab variant="round" color="primary" onClick={this.handleMessageSend}>
+            <Send />
+          </Fab>
         </div>
       </>
     )

@@ -1,27 +1,34 @@
 import React from 'react'
-import { MessageForm } from './MessageFrom'
-import { MessageList } from './MessageList'
+import { MessageForm } from '../MessageForm'
+import { MessagesList } from '../MessagesList'
+import { nanoid } from 'nanoid'
+
+import './Messenger.css'
+import { Grid } from '@material-ui/core'
 
 export class Messenger extends React.Component{
   state = {
     messages: [{
+      id: nanoid(),
       author: 'author1',
       text: 'Hello'
     },
     {
+      id: nanoid(),
       author: 'author2',
       text: 'Hi'
     }]
   }
 
   handleMessageSend = (message) => {
+    message.id = nanoid()
     this.setState({messages: this.state.messages.concat(message)})
   }
 
   randomMessage(min, max) {
     let rand = min + Math.random() * (max + 1 - min);
     return Math.floor(rand);
-}
+  }
 
 componentDidUpdate() {
     const lastAuthor = this.state.messages[this.state.messages.length - 1].author
@@ -40,16 +47,24 @@ componentDidUpdate() {
         this.handleMessageSend(answer)
     }, 1000)
     }
-
-}
+  }
 
   render(){
     const { messages } = this.state
     return (
-      <>
-        <MessageList items={messages} author={messages}/>
+      <div className='messenger'>
+      <Grid container wrap='nowrap' spacing={2}>
+        <Grid xs={3}>
+          <p>1123</p>
+        </Grid>
+        <Grid xs={9}>
+        <div className='message-list'>
+          <MessagesList items={messages} author={messages}/>
+        </div>
         <MessageForm onSend={this.handleMessageSend}/>
-      </>
+        </Grid>
+      </Grid>
+      </div>
     )
   }
 }
