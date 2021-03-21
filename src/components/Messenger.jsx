@@ -14,11 +14,8 @@ export class Messenger extends React.Component{
     }]
   }
 
-  interval = null
-
   handleMessageSend = (message) => {
     this.setState({messages: this.state.messages.concat(message)})
-    clearInterval(this.interval);
   }
 
   randomMessage(min, max) {
@@ -27,8 +24,6 @@ export class Messenger extends React.Component{
 }
 
 componentDidUpdate() {
-    clearInterval(this.interval)
-
     const lastAuthor = this.state.messages[this.state.messages.length - 1].author
 
     const botAnswer = [`Привет, ${lastAuthor}, чем я могу тебе помочь?`, `${lastAuthor}, спроси что-нибудь проще.`, `Очень интересная история, ${lastAuthor}`, `Не согласен с тобой, ${lastAuthor}.`, `Привет, ${lastAuthor}, приятно познакомиться!`, `${lastAuthor}, повтори, пожалуйста.`, `${lastAuthor}, полностью согласен!`, `${lastAuthor}, как дела?`, `${lastAuthor}, погода и правда сегодня хорошая.`, `${lastAuthor}, пока!`,]
@@ -40,9 +35,11 @@ componentDidUpdate() {
         text: botAnswer[index - 1],
     }
 
-    this.interval = setInterval(() => {
+    if(lastAuthor != 'Bot'){
+      setTimeout(() => {
         this.handleMessageSend(answer)
     }, 1000)
+    }
 
 }
 
