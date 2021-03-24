@@ -12,7 +12,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      components: path.resolve(__dirname, 'src', 'components')
+      components: path.resolve(__dirname, 'src', 'components'),
+      pages: path.resolve(__dirname, 'src', 'pages')
     }
   },
 
@@ -44,5 +45,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'main.css'
     })
-  ]
+  ],
+  devtool: 'eval-source-map',
+  devServer: {
+    historyApiFallback: true
+  }
 }

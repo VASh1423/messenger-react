@@ -1,13 +1,16 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+
 import { Header } from './components/Heder'
-import { Messenger } from './components/Messenger'
+import { Layout } from './layout/Layout'
+
 import './style/main.css'
 
 
 ReactDom.render(
-  <>
+  <BrowserRouter>
     <Header/>
-    <Messenger/>
-  </>
+    <Layout/>
+  </BrowserRouter>
 , document.getElementById('root'))

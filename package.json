@@ -33,6 +33,7 @@
     "classnames": "^2.2.6",
     "nanoid": "^3.1.22",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0"
   }
 }

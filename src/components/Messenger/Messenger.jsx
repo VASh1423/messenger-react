@@ -1,31 +1,32 @@
 import React from 'react'
+import { nanoid } from 'nanoid'
+
 import { MessageForm } from '../MessageForm'
 import { MessagesList } from '../MessagesList'
-import { nanoid } from 'nanoid'
 
 import './Messenger.css'
 import { Grid } from '@material-ui/core'
 import { ChatsList } from '../ChatsList'
+import {chats} from '../../helpers/chatsData'
 
 export class Messenger extends React.Component{
   state = {
-    messages: [{
-      id: nanoid(),
-      author: 'author1',
-      text: 'Hello'
-    },
-    {
-      id: nanoid(),
-      author: 'author2',
-      text: 'Hi'
-    }]
+    chats
   }
 
   timer = null
 
   handleMessageSend = (message) => {
+    const {chats} = this.state
+    const {match} = this.props
+
     message.id = nanoid()
-    this.setState({messages: this.state.messages.concat(message)})
+
+    const chat = chats[match.params.id].messages
+    chat.messages = this.messages.concat([message])
+    chats[match.params.id] = chat
+
+    this.setState(chats)
   }
 
   randomMessage(min, max) {
@@ -34,7 +35,7 @@ export class Messenger extends React.Component{
   }
 
 componentDidUpdate() {
-    const lastAuthor = this.state.messages[this.state.messages.length - 1].author
+    const lastAuthor = this.messages[this.messages.length - 1].author
 
     clearTimeout(this.timer)
 
@@ -54,8 +55,20 @@ componentDidUpdate() {
     }
   }
 
+  get messages(){
+    const {chats} = this.state
+    const {match} = this.props
+
+    let messages = null
+
+    if(match && chats[match.params.id]){
+      messages = chats[match.params.id].messages
+    }
+    return messages
+  }
+
   render(){
-    const { messages } = this.state
+    const messages = this.messages
     return (
       <div className='messenger'>
       <Grid container wrap='nowrap' spacing={2}>
@@ -64,9 +77,9 @@ componentDidUpdate() {
         </Grid>
         <Grid xs={9}>
         <div className='message-list'>
-          <MessagesList items={messages} author={messages}/>
+        {messages ? <MessagesList items={messages} author={messages}/> : <div>Выберите чат</div>}
         </div>
-        <MessageForm onSend={this.handleMessageSend}/>
+        {messages && <MessageForm onSend={this.handleMessageSend}/>}
         </Grid>
       </Grid>
       </div>
