@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid'
 
 import './Messenger.css'
 import { Grid } from '@material-ui/core'
+import { ChatsList } from '../ChatsList'
 
 export class Messenger extends React.Component{
   state = {
@@ -20,6 +21,8 @@ export class Messenger extends React.Component{
     }]
   }
 
+  timer = null
+
   handleMessageSend = (message) => {
     message.id = nanoid()
     this.setState({messages: this.state.messages.concat(message)})
@@ -33,19 +36,21 @@ export class Messenger extends React.Component{
 componentDidUpdate() {
     const lastAuthor = this.state.messages[this.state.messages.length - 1].author
 
+    clearTimeout(this.timer)
+
     const botAnswer = [`Привет, ${lastAuthor}, чем я могу тебе помочь?`, `${lastAuthor}, спроси что-нибудь проще.`, `Очень интересная история, ${lastAuthor}`, `Не согласен с тобой, ${lastAuthor}.`, `Привет, ${lastAuthor}, приятно познакомиться!`, `${lastAuthor}, повтори, пожалуйста.`, `${lastAuthor}, полностью согласен!`, `${lastAuthor}, как дела?`, `${lastAuthor}, погода и правда сегодня хорошая.`, `${lastAuthor}, пока!`,]
 
     const index = this.randomMessage(1, 10)
 
     const answer = {
-        author: "Bot",
-        text: botAnswer[index - 1],
+      author: "Bot",
+      text: botAnswer[index - 1],
     }
 
     if(lastAuthor != 'Bot'){
-      setTimeout(() => {
+      this.timer = setTimeout(() => {
         this.handleMessageSend(answer)
-    }, 1000)
+      }, 3000)
     }
   }
 
@@ -55,7 +60,7 @@ componentDidUpdate() {
       <div className='messenger'>
       <Grid container wrap='nowrap' spacing={2}>
         <Grid xs={3}>
-          <p>1123</p>
+          <ChatsList/>
         </Grid>
         <Grid xs={9}>
         <div className='message-list'>
