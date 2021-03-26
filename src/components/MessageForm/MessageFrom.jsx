@@ -1,6 +1,6 @@
+import React from 'react'
 import { Fab, TextField } from '@material-ui/core'
 import { Send } from '@material-ui/icons'
-import React from 'react'
 
 export class MessageForm extends React.Component{
   state = {

@@ -29,12 +29,25 @@ export class Messenger extends React.Component{
     this.setState(chats)
   }
 
+  handleAddChat = (chat) => {
+    const {chats} = this.state
+
+    chat.id=chats.length
+
+    this.setState({
+      chats: [...chats, chat]
+    })
+  }
+
   randomMessage(min, max) {
     let rand = min + Math.random() * (max + 1 - min);
     return Math.floor(rand);
   }
 
 componentDidUpdate() {
+    if(!this.messages) return
+    if(!this.messages.length) return
+
     const lastAuthor = this.messages[this.messages.length - 1].author
 
     clearTimeout(this.timer)
@@ -73,11 +86,11 @@ componentDidUpdate() {
       <div className='messenger'>
       <Grid container wrap='nowrap' spacing={2}>
         <Grid xs={3}>
-          <ChatsList/>
+          <ChatsList chats={this.state.chats} onSend={this.handleAddChat}/>
         </Grid>
         <Grid xs={9}>
         <div className='message-list'>
-        {messages ? <MessagesList items={messages} author={messages}/> : <div>Выберите чат</div>}
+        {messages ? (messages.length ? <MessagesList items={messages} author={messages}/>: <div>Пустой чат</div>) : <div>Выберите чат</div>}
         </div>
         {messages && <MessageForm onSend={this.handleMessageSend}/>}
         </Grid>
