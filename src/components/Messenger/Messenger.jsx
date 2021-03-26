@@ -22,7 +22,7 @@ export class Messenger extends React.Component{
 
     message.id = nanoid()
 
-    const chat = chats[match.params.id].messages
+    const chat = chats[match.params.id]
     chat.messages = this.messages.concat([message])
     chats[match.params.id] = chat
 
@@ -48,7 +48,7 @@ componentDidUpdate() {
       text: botAnswer[index - 1],
     }
 
-    if(lastAuthor != 'Bot'){
+    if(lastAuthor != 'Bot' && this.messages.length != 0){
       this.timer = setTimeout(() => {
         this.handleMessageSend(answer)
       }, 3000)
