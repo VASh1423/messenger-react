@@ -15,6 +15,9 @@ export const Header = () => {
         <Link to="/">
           <ListItemText primary="Главная" />
         </Link>
+        <Link to="/profile">
+          <ListItemText primary="Профиль" />
+        </Link>
         <Link to="/about">
           <ListItemText primary="О нас" />
         </Link>

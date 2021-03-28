@@ -85,10 +85,10 @@ componentDidUpdate() {
     return (
       <div className='messenger'>
       <Grid container wrap='nowrap' spacing={2}>
-        <Grid xs={3}>
+        <Grid item={true} xs={3}>
           <ChatsList chats={this.state.chats} onSend={this.handleAddChat}/>
         </Grid>
-        <Grid xs={9}>
+        <Grid item={true} xs={9}>
         <div className='message-list'>
         {messages ? (messages.length ? <MessagesList items={messages} author={messages}/>: <div>Пустой чат</div>) : <div>Выберите чат</div>}
         </div>

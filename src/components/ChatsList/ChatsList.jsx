@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ChatItem } from '../ChatItem/ChatItem';
-import { ChatForm } from '../ChatFrom/ChatFrom';
+import { ChatItem } from '../ChatItem';
+import { ChatForm } from '../ChatForm';
 
 export const ChatsList = ({chats, onSend}) => {
   return (

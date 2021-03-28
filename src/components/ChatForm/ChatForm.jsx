@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { nanoid } from 'nanoid'
 import { Fab, TextField } from '@material-ui/core'
 import { ControlPoint } from '@material-ui/icons'
 
