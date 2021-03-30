@@ -1,8 +1,7 @@
 import React from 'react'
-import { List, ListItem, ListItemText } from '@material-ui/core'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route} from 'react-router-dom'
 
-import { Messenger } from 'components/Messenger'
+import { MessengerContainer } from 'containers/MessengerContainer'
 import {Home} from 'pages/Home'
 import {Profile} from 'pages/Profile'
 import {About} from 'pages/About'
@@ -17,8 +16,8 @@ export class Layout extends React.Component {
             <Route path='/' exact><Home/></Route>
             <Route path='/profile' exact><Profile/></Route>
             <Route path='/about' exact><About/></Route>
-            <Route path='/chat' component={Messenger} exact/>
-            <Route path='/chat/:id([0-9]+)' component={Messenger} exact/>
+            <Route path='/chat' component={MessengerContainer} exact/>
+            <Route path='/chat/:id([0-9]+)' component={MessengerContainer} exact/>
             <Route path='*'><Error/></Route>
           </Switch>
         </div>
