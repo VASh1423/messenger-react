@@ -25,13 +25,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function Profile() {
+export function Profile({data}) {
+  console.log(data);
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <div className="pages_container">
@@ -40,8 +36,8 @@ export function Profile() {
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar} src={img}/>
           }
-          title="Shokarev Vladimir"
-          subheader="May 8, 1999"
+          title={`${data.secondName} ${data.firstName}`}
+          subheader={data.dateOfBirth}
         />
         <CardMedia
           className={classes.media}
@@ -50,7 +46,7 @@ export function Profile() {
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            JS, React, TS, Webpack, HTML, CSS, Python, C++
+            {data.aboutMe}
           </Typography>
         </CardContent>
       </Card>
