@@ -10,16 +10,6 @@ import { ChatsList } from '../ChatsList'
 export class Messenger extends React.Component{
   timer = null
 
-  handleAddChat = (chat) => {
-    const {chats} = this.state
-
-    chat.id=chats.length
-
-    this.setState({
-      chats: [...chats, chat]
-    })
-  }
-
 //   randomMessage(min, max) {
 //     let rand = min + Math.random() * (max + 1 - min);
 //     return Math.floor(rand);
@@ -50,13 +40,13 @@ export class Messenger extends React.Component{
 //   }
 
   render(){
-    const {messages, handleMessageSend} = this.props
+    const {messages, handleMessageSend, chats, handleAddChat} = this.props
     return (
       <div className='messenger'>
       <Grid container wrap='nowrap' spacing={2}>
-        {/* <Grid item={true} xs={3}>
-          <ChatsList chats={this.state.chats} onSend={this.handleAddChat}/>
-        </Grid> */}
+        <Grid item={true} xs={3}>
+          <ChatsList chats={chats} onSend={handleAddChat}/>
+        </Grid>
         <Grid item={true} xs={9}>
         <div className='message-list'>
         {messages ? (messages.length ? <MessagesList items={messages} author={messages}/>: <div>Пустой чат</div>) : <div>Выберите чат</div>}

@@ -1,6 +1,9 @@
 export const CHATS_LOAD = 'CHATS_LOAD'
 export const CHATS_MESSAGE_SEND = 'CHATS_MESSAGE_SEND'
 
+export const CHATS_LIST_LOAD = 'CHATS_LIST_LOAD'
+export const CHATS_ADD = 'CHATS_ADD'
+
 export const ChatsLoadAction = () => ({
   type: CHATS_LOAD
 })
@@ -8,4 +11,13 @@ export const ChatsLoadAction = () => ({
 export const ChatsMessageSendAction = (message) => ({
   type: CHATS_MESSAGE_SEND,
   payload: message
+})
+
+export const ChatsListLoadAction = () => ({
+  type: CHATS_LIST_LOAD
+})
+
+export const ChatsAddAction = (title) => ({
+  type: CHATS_ADD,
+  payload: title
 })
