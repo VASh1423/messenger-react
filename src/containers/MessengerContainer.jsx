@@ -1,17 +1,21 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { nanoid } from 'nanoid'
+import {push} from 'connected-react-router'
 
 import { Messenger } from 'components/Messenger'
 import {ChatsLoadAction, ChatsMessageSendAction, ChatsListLoadAction, ChatsAddAction} from '../actions/chats'
 
 class MessengerContainerClass extends React.Component{
   componentDidMount(){
-    this.props.ChatsLoadAction()
-    this.props.ChatsListLoadAction()
+    if(!this.props.chats.length){
+      this.props.ChatsLoadAction()
+      this.props.ChatsListLoadAction()
+    }
   }
 
   handleMessageSend = (message) => {
+    console.log(this.props);
     const {chatId} = this.props
     message.id = nanoid()
 
@@ -22,12 +26,14 @@ class MessengerContainerClass extends React.Component{
   }
 
   handleAddChat = (title) => {
-    const {chats} = this.props
+    console.log(this.props);
+    const {chats, redirect} = this.props
     title.id=chats.length
 
     this.props.ChatsAddAction({
       ...title,
     })
+    redirect(title.id)
   }
 
   render(){
@@ -57,7 +63,8 @@ function mapDispatchToProps(dispatch){
     ChatsLoadAction: () => dispatch(ChatsLoadAction()),
     ChatsMessageSendAction: (message) => dispatch(ChatsMessageSendAction(message)),
     ChatsListLoadAction: () => dispatch(ChatsListLoadAction()),
-    ChatsAddAction: (title) => dispatch(ChatsAddAction(title))
+    ChatsAddAction: (title) => dispatch(ChatsAddAction(title)),
+    redirect: (id) => dispatch(push(`/chat/${id}`))
   }
 }
 

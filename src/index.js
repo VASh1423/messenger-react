@@ -2,19 +2,24 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import {Provider} from 'react-redux'
+import {ConnectedRouter} from 'connected-react-router'
+import { PersistGate } from "redux-persist/integration/react"
 
 import { Header } from './components/Heder'
 import { Layout } from './layout/Layout'
-import { store } from './store'
+import { history, initStore } from './store'
 
 import './style/main.css'
 
+const {store, persistor} = initStore()
 
 ReactDom.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <Header/>
-      <Layout/>
-    </BrowserRouter>
+    <PersistGate persistor={persistor}>
+      <ConnectedRouter history={history}>
+        <Header/>
+        <Layout/>
+      </ConnectedRouter>
+    </PersistGate>
   </Provider>
 , document.getElementById('root'))
