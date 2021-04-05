@@ -9,16 +9,16 @@ import { ChatsList } from '../ChatsList'
 
 export class Messenger extends React.Component{
   render(){
-    const {messages, handleMessageSend, chats, handleAddChat, handleDeleteChat} = this.props
+    const {messages, handleMessageSend, chats, handleAddChat, handleDeleteMessage, handleDeleteChat} = this.props
     return (
       <div className='messenger'>
       <Grid container wrap='nowrap' spacing={2}>
         <Grid item={true} xs={3}>
-          <ChatsList chats={chats} onSend={handleAddChat}/>
+          <ChatsList chats={chats} onSend={handleAddChat} handleDeleteChat={handleDeleteChat}/>
         </Grid>
         <Grid item={true} xs={9}>
         <div className='message-list'>
-        {messages ? (messages.length ? <MessagesList items={messages} author={messages} handleDeleteChat={handleDeleteChat}/>: <div>Пустой чат</div>) : <div>Выберите чат</div>}
+        {messages ? (messages.length ? <MessagesList items={messages} author={messages} handleDeleteMessage={handleDeleteMessage}/>: <div>Пустой чат</div>) : <div>Выберите чат</div>}
         </div>
         {messages && <MessageForm onSend={handleMessageSend}/>}
         </Grid>

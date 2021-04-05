@@ -5,7 +5,8 @@ import {
   CHATS_MESSAGE_SEND,
   CHATS_LIST_LOAD,
   CHATS_ADD,
-  CHATS_MESSAGE_DELETE
+  CHATS_MESSAGE_DELETE,
+  CHATS_DELETE
 } from '../actions/chats'
 
 const initialState = {
@@ -48,7 +49,12 @@ export const chatReducer = (state=initialState, action) => {
                 },
             },
         },
-    });
+    })
+    case CHATS_DELETE:
+      return {
+        ...state,
+        entries: state.entries.filter((item) => item.id != action.payload.id)
+    };
     default:
       return state
   }

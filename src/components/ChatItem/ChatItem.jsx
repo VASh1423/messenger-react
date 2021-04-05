@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ChatItem = ({chat}) => {
+export const ChatItem = ({chat, id, handleDeleteChat}) => {
   const classes = useStyles();
 
   return (
@@ -31,6 +31,7 @@ export const ChatItem = ({chat}) => {
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={chat.title} secondary="Jan 9, 2014" />
+          <button onClick={() => handleDeleteChat(id)}>Удалить</button>
         </ListItem>
       </Link>
     </List>
