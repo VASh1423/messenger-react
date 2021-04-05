@@ -4,7 +4,8 @@ import {
   CHATS_LOAD, 
   CHATS_MESSAGE_SEND,
   CHATS_LIST_LOAD,
-  CHATS_ADD
+  CHATS_ADD,
+  CHATS_MESSAGE_DELETE
 } from '../actions/chats'
 
 const initialState = {
@@ -38,6 +39,16 @@ export const chatReducer = (state=initialState, action) => {
       return update(state, {
         entries: {$push: [{id: action.payload.id, title: action.payload.title, messages: action.payload.messages}]}
       })
+    case CHATS_MESSAGE_DELETE:
+      return update(state, {
+        entries: {
+            [action.payload.chatId]: {
+                messages: {
+                    $splice: [[action.payload.id, 1]],
+                },
+            },
+        },
+    });
     default:
       return state
   }
