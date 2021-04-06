@@ -1,4 +1,4 @@
-import { CHATS_MESSAGE_SEND, ChatsMessageSendAction } from '../actions/chats'
+import { CHATS_MESSAGE_SEND, ChatsMessageSendAction, ChatFireAction } from '../actions/chats'
 import { nanoid } from 'nanoid'
 
 export const botMiddleware = store => next => action => {
@@ -12,6 +12,7 @@ export const botMiddleware = store => next => action => {
           author: "Bot",
           text: randomMessage(author),
         }))
+        store.dispatch(ChatFireAction({chatId}))
       }, 1000)
     }
   }

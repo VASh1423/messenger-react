@@ -6,7 +6,9 @@ import {
   CHATS_LIST_LOAD,
   CHATS_ADD,
   CHATS_MESSAGE_DELETE,
-  CHATS_DELETE
+  CHATS_DELETE,
+  FIRE_CHAT,
+  UNFIRE_CHAT
 } from '../actions/chats'
 
 const initialState = {
@@ -55,6 +57,22 @@ export const chatReducer = (state=initialState, action) => {
         ...state,
         entries: state.entries.filter((item) => item.id != action.payload.id)
     };
+    case FIRE_CHAT:
+      return update(state, {
+        entries: {
+            [action.payload.chatId]: {
+                fire: {$set: true}
+            },
+        },
+    })
+    case UNFIRE_CHAT:
+      return update(state, {
+        entries: {
+            [action.payload.id]: {
+                fire: {$set: false}
+            },
+        },
+    })
     default:
       return state
   }

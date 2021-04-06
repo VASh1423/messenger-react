@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ChatItem = ({chat, id, handleDeleteChat}) => {
+export const ChatItem = ({chat, id, handleDeleteChat, fire, handleChatUnfire}) => {
   const classes = useStyles();
 
   return (
-    <List className={classes.root}>
+    <List className={classes.root} onClick={() => handleChatUnfire(id)}>
       <Link to={`/chat/${chat.id}`}>
-        <ListItem className="listItems">
+        <ListItem className={fire ? "listItemFire" : "listItems"}>
           <ListItemAvatar>
             <Avatar>
               <ImageIcon />
