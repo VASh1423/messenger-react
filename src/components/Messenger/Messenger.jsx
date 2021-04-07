@@ -9,7 +9,16 @@ import { ChatsList } from '../ChatsList'
 
 export class Messenger extends React.Component{
   render(){
-    const {messages, handleMessageSend, chats, handleAddChat, handleDeleteMessage, handleDeleteChat, handleChatUnfire} = this.props
+    const {messages, handleMessageSend, chats, handleAddChat, handleDeleteMessage, handleDeleteChat, handleChatUnfire, isLoading, isError} = this.props
+
+    if(isError){
+      return <div>Error</div>
+    }
+
+    if(isLoading){
+      return <div>Loading...</div>
+    }
+
     return (
       <div className='messenger'>
       <Grid container wrap='nowrap' spacing={2}>

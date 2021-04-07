@@ -5,6 +5,8 @@ import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
+import { apiMiddleware } from 'redux-api-middleware'
+import reduxThunk from 'redux-thunk'
 
 import {createRootReducer} from 'reducers'
 import { botMiddleware } from './middlewares/bot'
@@ -13,7 +15,8 @@ export const history = createBrowserHistory()
 
 const persistConfig = {
   key: 'app',
-  storage
+  storage,
+  blacklist: ['chats']
 }
 
 export const initStore = () => {
@@ -25,7 +28,9 @@ export const initStore = () => {
     composeWithDevTools(applyMiddleware(
       logger, 
       botMiddleware, 
-      routerMiddleware(history)
+      routerMiddleware(history),
+      apiMiddleware,
+      reduxThunk
     ))
   )
   const persistor = persistStore(store)

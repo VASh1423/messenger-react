@@ -48,7 +48,7 @@ class MessengerContainerClass extends React.Component{
   }
 
   render(){
-    const {messages, chats} = this.props
+    const {messages, chats, isLoading, isError} = this.props
     return <Messenger 
       messages={messages} 
       handleMessageSend={this.handleMessageSend} 
@@ -56,6 +56,8 @@ class MessengerContainerClass extends React.Component{
       handleDeleteMessage={this.handleDeleteMessage}
       handleDeleteChat={this.handleDeleteChat}
       handleChatUnfire={this.handleChatUnfire}
+      isLoading={isLoading}
+      isError={isError}
     />
   }
 }
@@ -72,7 +74,9 @@ function mapStateToProps(state, ownProps){
   return {
     chats,
     messages,
-    chatId: match ? match.params.id : null
+    chatId: match ? match.params.id : null,
+    isLoading: state.chats.loading,
+    isError: state.chats.error
   }
 }
 
