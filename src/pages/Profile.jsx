@@ -25,10 +25,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function Profile({data}) {
-  console.log(data);
-  const classes = useStyles();
+export function Profile({data, isLoading, isError}) {
+  const classes = useStyles()
 
+  console.log(data, isLoading);
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  console.log('here');
   return (
     <div className="pages_container">
       <Card className={classes.root}>
@@ -36,8 +41,8 @@ export function Profile({data}) {
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar} src={img}/>
           }
-          title={`${data.secondName} ${data.firstName}`}
-          subheader={data.dateOfBirth}
+          title={`${data[0].secondName} ${data[0].firstName}`}
+          subheader={data[0].dateOfBirth}
         />
         <CardMedia
           className={classes.media}
@@ -46,7 +51,7 @@ export function Profile({data}) {
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            {data.aboutMe}
+            {data[0].aboutMe}
           </Typography>
         </CardContent>
       </Card>

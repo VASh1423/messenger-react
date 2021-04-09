@@ -1,4 +1,12 @@
 {
+  "profiles": [
+    {
+      "firstName": "Vladimir",
+      "secondName": "Shokarev",
+      "dateOfBirth": "08.05.1999",
+      "aboutMe": "JS, React, TS, Webpack, HTML, CSS, Python, C++"
+    }
+  ],
   "chats": [
     {"id": 0, "title": "Текстовый чат"},
     {"id": 1, "title": "Рабочий чат"},
