@@ -5,7 +5,7 @@ import {
   CHATS_LOAD_SUCCESS,
   CHATS_LOAD_FAILURE, 
   CHATS_MESSAGE_SEND_SUCCESS,
-  CHATS_ADD,
+  CHAT_ADD_SUCCESS,
   CHATS_MESSAGE_DELETE,
   CHATS_DELETE,
   FIRE_CHAT,
@@ -17,8 +17,6 @@ const initialState = {
   loading: false,
   error: false
 }
-
-// import {chats} from '../helpers/chatsData'
 
 export const chatReducer = (state=initialState, action) => {
   switch (action.type) {
@@ -44,16 +42,18 @@ export const chatReducer = (state=initialState, action) => {
       return update(state, {
         entries: {
           [action.payload.chatId]: {
-            messages: { $push: [{ id: action.payload.id, text: action.payload.text, author: action.payload.author }] },
+            messages: { 
+              $push: [{ id: action.payload.id, text: action.payload.text, author: action.payload.author }] 
+            },
           },
         },
       });
-    case CHATS_ADD:
+    case CHAT_ADD_SUCCESS:
       return update(state, {
         entries: {
           $push: [
             {
-              id: action.payload.id,
+              id: `${action.payload.id}`,
               title: action.payload.title,
               messages: action.payload.messages,
             },

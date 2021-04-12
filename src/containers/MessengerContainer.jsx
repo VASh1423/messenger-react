@@ -74,7 +74,7 @@ function mapStateToProps(state, ownProps){
   return {
     chats,
     messages,
-    chatId: match ? match.params.id : null,
+    chatId: +(match ? match.params.id : null),
     isLoading: state.chats.loading,
     isError: state.chats.error
   }
