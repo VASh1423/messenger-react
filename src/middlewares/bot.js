@@ -1,8 +1,8 @@
-import { CHATS_MESSAGE_SEND, ChatsMessageSendAction, ChatFireAction } from '../actions/chats'
+import { CHATS_MESSAGE_SEND_SUCCESS, ChatsMessageSendAction, ChatFireAction } from '../actions/chats'
 import { nanoid } from 'nanoid'
 
 export const botMiddleware = store => next => action => {
-  if(action.type === CHATS_MESSAGE_SEND){
+  if(action.type === CHATS_MESSAGE_SEND_SUCCESS){
     const {author, chatId} = action.payload
     if(author !== 'Bot'){
       setTimeout(() => {

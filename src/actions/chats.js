@@ -1,32 +1,32 @@
 import {createAction} from 'redux-api-middleware'
 
-// export const CHATS_LOAD = 'CHATS_LOAD'
-export const CHATS_MESSAGE_SEND = 'CHATS_MESSAGE_SEND'
 export const CHATS_MESSAGE_DELETE = 'CHATS_MESSAGE_DELETE'
 
 export const CHATS_LOAD_REQUEST = 'CHATS_LOAD_REQUEST'
 export const CHATS_LOAD_SUCCESS = 'CHATS_LOAD_SUCCESS'
 export const CHATS_LOAD_FAILURE = 'CHATS_LOAD_FAILURE'
 
-export const CHATS_LIST_LOAD = 'CHATS_LIST_LOAD'
+export const CHATS_MESSAGE_SEND_REQUEST = "CHATS_MESSAGE_SEND_REQUEST";
+export const CHATS_MESSAGE_SEND_SUCCESS = "CHATS_MESSAGE_SEND_SUCCESS";
+export const CHATS_MESSAGE_SEND_FAILURE = "CHATS_MESSAGE_SEND_FAILURE";
+
 export const CHATS_ADD = 'CHATS_ADD'
 export const CHATS_DELETE = 'CHATS_DELETE'
 
 export const FIRE_CHAT = 'FIRE_CHAT'
 export const UNFIRE_CHAT = 'UNFIRE_CHAT'
 
-// export const ChatsLoadAction = () => ({
-//   type: CHATS_LOAD
-// })
-
-export const ChatsMessageSendAction = (message) => ({
-  type: CHATS_MESSAGE_SEND,
-  payload: message
-})
-
-export const ChatsListLoadAction = () => ({
-  type: CHATS_LIST_LOAD
-})
+export const ChatsMessageSendAction = (message) => createAction({
+  endpoint: 'http://localhost:3000/messages',
+  method: "POST",
+  body: JSON.stringify(message),
+  headers: { "Content-Type": "application/json" },
+  types: [
+    CHATS_MESSAGE_SEND_REQUEST,
+    CHATS_MESSAGE_SEND_SUCCESS,
+    CHATS_MESSAGE_SEND_FAILURE,
+  ]
+  });
 
 export const ChatsAddAction = (title) => ({
   type: CHATS_ADD,
@@ -53,19 +53,6 @@ export const ChatUnfireAction = (id) => ({
   payload: id
 })
 
-// Middleware
-// export const ChatsLoadAction = () => createAction({
-//   endpoint: 'http://localhost:3000/chats?_embed=messages',
-//   method: 'GET',
-//   headers: { 'Content-Type': 'application/json' },
-//   types: [
-//     CHATS_LOAD_REQUEST,
-//     CHATS_LOAD_SUCCESS,
-//     CHATS_LOAD_FAILURE
-//   ]
-// })
-
-// fetch
 export const ChatsLoadRequestAction = () => ({
   type: CHATS_LOAD_REQUEST
 })

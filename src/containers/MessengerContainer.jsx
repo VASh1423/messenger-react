@@ -4,13 +4,12 @@ import { nanoid } from 'nanoid'
 import {push} from 'connected-react-router'
 
 import { Messenger } from 'components/Messenger'
-import {ChatsLoadAction, ChatsMessageSendAction, ChatsListLoadAction, ChatsAddAction, ChatsMessageDeleteAction, ChatDeleteAction, ChatUnfireAction} from '../actions/chats'
+import {ChatsLoadAction, ChatsMessageSendAction, ChatsAddAction, ChatsMessageDeleteAction, ChatDeleteAction, ChatUnfireAction} from '../actions/chats'
 
 class MessengerContainerClass extends React.Component{
   componentDidMount(){
     if(!this.props.chats.length){
       this.props.ChatsLoadAction()
-      this.props.ChatsListLoadAction()
     }
   }
 
@@ -52,7 +51,8 @@ class MessengerContainerClass extends React.Component{
     return <Messenger 
       messages={messages} 
       handleMessageSend={this.handleMessageSend} 
-      chats={chats} handleAddChat={this.handleAddChat}
+      chats={chats} 
+      handleAddChat={this.handleAddChat}
       handleDeleteMessage={this.handleDeleteMessage}
       handleDeleteChat={this.handleDeleteChat}
       handleChatUnfire={this.handleChatUnfire}
@@ -84,7 +84,6 @@ function mapDispatchToProps(dispatch){
   return {
     ChatsLoadAction: () => dispatch(ChatsLoadAction()),
     ChatsMessageSendAction: (message) => dispatch(ChatsMessageSendAction(message)),
-    ChatsListLoadAction: () => dispatch(ChatsListLoadAction()),
     ChatsAddAction: (title) => dispatch(ChatsAddAction(title)),
     ChatsMessageDeleteAction: (id) => dispatch(ChatsMessageDeleteAction(id)),
     ChatDeleteAction: (id) => dispatch(ChatDeleteAction(id)),
