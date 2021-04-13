@@ -25,15 +25,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function Profile({data, isLoading, isError}) {
+export const Profile = ({data, isLoading, isError}) => {
   const classes = useStyles()
-
-  console.log(data, isLoading);
 
   if (isLoading) {
     return <div>Loading...</div>
   }
-  console.log('here');
   return (
     <div className="pages_container">
       <Card className={classes.root}>

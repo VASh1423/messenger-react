@@ -1,26 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Fab, TextField } from '@material-ui/core'
 import { Send } from '@material-ui/icons'
 
-export class MessageForm extends React.Component{
-  state = {
+export const MessageForm = (props) => {
+  const [dataForm, setDataForm] = useState({
     author: '',
     text: ''
-  }
+  })
 
-  handlerKeyDown = (event) => {
+  const handlerKeyDown = (event) => {
     if(event.key === 'Enter' && event.ctrlKey){
-      this.handleMessageSend()
+      handleMessageSend()
     }
   }
 
-  handleInputChange = (event) => {
-    const fieldName = event.target.name
-    this.setState({[fieldName]: event.target.value})
+  const handleInputChange = (event) => {
+    setDataForm({
+      ...dataForm,
+      [event.target.name]: event.target.value
+    })
   }
 
-  handleMessageSend = () => {
-    const {author, text} = this.state
+  const handleMessageSend = () => {
+    const {author, text} = dataForm
     if(!author){
       alert('Enter name')
       return
@@ -29,37 +31,33 @@ export class MessageForm extends React.Component{
       alert('Enter text')
       return
     }
-    this.setState({text: ''})
-    this.props.onSend(this.state)
+    props.onSend(dataForm)
+    setDataForm({...dataForm, text: ''})
   }
 
-  render(){
-    const {author, text} = this.state
-
-    return (
-      <>
-        <div>
-          <TextField
-            label="Name"
-            name="author"
-            type="text"
-            value={author}
-            onChange={this.handleInputChange}
-            onKeyDown={this.handlerKeyDown}
-          />
-          <TextField
-            name="text"
-            label="Text"
-            value={text}
-            multiline
-            onChange={this.handleInputChange}
-            onKeyDown={this.handlerKeyDown}
-          />
-          <Fab variant="round" color="primary" onClick={this.handleMessageSend}>
-            <Send />
-          </Fab>
-        </div>
-      </>
-    )
-  }
+  return (
+    <>
+      <div>
+        <TextField
+          label="Name"
+          name="author"
+          type="text"
+          value={dataForm.author}
+          onChange={handleInputChange}
+          onKeyDown={handlerKeyDown}
+        />
+        <TextField
+          name="text"
+          label="Text"
+          value={dataForm.text}
+          multiline
+          onChange={handleInputChange}
+          onKeyDown={handlerKeyDown}
+        />
+        <Fab variant="round" color="primary" onClick={handleMessageSend}>
+          <Send />
+        </Fab>
+      </div>
+    </>
+  )
 }

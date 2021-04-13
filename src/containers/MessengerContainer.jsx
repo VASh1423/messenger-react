@@ -1,95 +1,61 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React, { useEffect } from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import { nanoid } from 'nanoid'
 import {push} from 'connected-react-router'
+import {useParams} from 'react-router-dom'
 
 import { Messenger } from 'components/Messenger'
 import {ChatsLoadAction, ChatsMessageSendAction, ChatsAddAction, ChatsMessageDeleteAction, ChatDeleteAction, ChatUnfireAction} from '../actions/chats'
 
-class MessengerContainerClass extends React.Component{
-  componentDidMount(){
-    if(!this.props.chats.length){
-      this.props.ChatsLoadAction()
-    }
-  }
+export const MessengerContainer = (props) => {
+  const dispatch = useDispatch()
+  const {id} = useParams()
 
-  handleMessageSend = (message) => {
-    const {chatId} = this.props
-    message.id = nanoid()
+  const chats = useSelector((state) => state.chats.entries)
+  const messages = chats[id] ? chats[id].messages : null
 
-    this.props.ChatsMessageSendAction({
+  const [isLoading,  isError] = useSelector((state) => [state.chats.loading, state.chats.error])
+
+  useEffect(() => {
+    dispatch(ChatsLoadAction())
+  }, [])
+
+  const handleMessageSend = (message) => {
+    dispatch(ChatsMessageSendAction({
       ...message,
-      chatId
-    })
+      id: nanoid(),
+      chatId: +id
+    }))
   }
 
-  handleAddChat = (title) => {
-    const {chats, redirect} = this.props
+  const handleAddChat = (title) => {
     title.id=chats.length
 
-    this.props.ChatsAddAction({
-      ...title,
-    })
-    redirect(title.id)
+    dispatch(ChatsAddAction({...title}))
+    dispatch(push(`/chat/${title.id}`))
   }
 
-  handleDeleteMessage = (id) => {
-    const {chatId} = this.props
-    this.props.ChatsMessageDeleteAction({id, chatId})
+  const handleDeleteMessage = (id) => {
+    dispatch(ChatsMessageDeleteAction({id, chatId}))
   }
 
-  handleDeleteChat = (id) => {
-    this.props.ChatDeleteAction({id})
+  const handleDeleteChat = (id) => {
+    dispatch(ChatDeleteAction({id}))
   }
 
-  handleChatUnfire = (id) => {
-    this.props.ChatUnfireAction({id})
+  const handleChatUnfire = (id) => {
+    dispatch(ChatUnfireAction({id}))
   }
 
-  render(){
-    const {messages, chats, isLoading, isError} = this.props
-    return <Messenger 
+  return <Messenger 
       messages={messages} 
-      handleMessageSend={this.handleMessageSend} 
+      handleMessageSend={handleMessageSend} 
       chats={chats} 
-      handleAddChat={this.handleAddChat}
-      handleDeleteMessage={this.handleDeleteMessage}
-      handleDeleteChat={this.handleDeleteChat}
-      handleChatUnfire={this.handleChatUnfire}
+      handleAddChat={handleAddChat}
+      handleDeleteMessage={handleDeleteMessage}
+      handleDeleteChat={handleDeleteChat}
+      handleChatUnfire={handleChatUnfire}
       isLoading={isLoading}
       isError={isError}
     />
-  }
 }
-
-function mapStateToProps(state, ownProps){
-  const chats = state.chats.entries
-  const {match} = ownProps
-
-  let messages = null
-
-  if(match && chats[match.params.id]){
-    messages = chats[match.params.id].messages
-  }
-  return {
-    chats,
-    messages,
-    chatId: +(match ? match.params.id : null),
-    isLoading: state.chats.loading,
-    isError: state.chats.error
-  }
-}
-
-function mapDispatchToProps(dispatch){
-  return {
-    ChatsLoadAction: () => dispatch(ChatsLoadAction()),
-    ChatsMessageSendAction: (message) => dispatch(ChatsMessageSendAction(message)),
-    ChatsAddAction: (title) => dispatch(ChatsAddAction(title)),
-    ChatsMessageDeleteAction: (id) => dispatch(ChatsMessageDeleteAction(id)),
-    ChatDeleteAction: (id) => dispatch(ChatDeleteAction(id)),
-    ChatUnfireAction: (id) => dispatch(ChatUnfireAction(id)),
-    redirect: (id) => dispatch(push(`/chat/${id}`))
-  }
-}
-
-export const MessengerContainer = connect(mapStateToProps, mapDispatchToProps)(MessengerContainerClass)
