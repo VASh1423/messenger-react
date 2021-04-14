@@ -26,10 +26,10 @@ export const initStore = () => {
     persistReducer(persistConfig, createRootReducer(history)),
     initialStore,
     composeWithDevTools(applyMiddleware(
-      logger, 
-      botMiddleware, 
       routerMiddleware(history),
       apiMiddleware,
+      logger, 
+      botMiddleware, 
       reduxThunk
     ))
   )

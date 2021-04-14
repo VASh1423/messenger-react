@@ -7,21 +7,19 @@ import {About} from 'pages/About'
 import {Error} from 'pages/Error'
 import { ProfileContainer } from '../containers/ProfileContainer'
 
-export class Layout extends React.Component {
-  render(){
-    return(
+export const Layout = () => {
+  return(
+    <div>
       <div>
-        <div>
-          <Switch>
-            <Route path='/' exact><Home/></Route>
-            <Route path='/profile' component={ProfileContainer} exact></Route>
-            <Route path='/about' exact><About/></Route>
-            <Route path='/chat' component={MessengerContainer} exact/>
-            <Route path='/chat/:id([0-9]+)' component={MessengerContainer} exact/>
-            <Route path='*'><Error/></Route>
-          </Switch>
-        </div>
+        <Switch>
+          <Route path='/' exact><Home/></Route>
+          <Route path='/profile' component={ProfileContainer} exact></Route>
+          <Route path='/about' exact><About/></Route>
+          <Route path='/chat' component={MessengerContainer} exact/>
+          <Route path='/chat/:id([0-9]+)' component={MessengerContainer} exact/>
+          <Route path='*'><Error/></Route>
+        </Switch>
       </div>
-    )
-  }
+    </div>
+  )
 }

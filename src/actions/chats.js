@@ -29,7 +29,7 @@ export const ChatsMessageSendAction = (message) => createAction({
     CHATS_MESSAGE_SEND_SUCCESS,
     CHATS_MESSAGE_SEND_FAILURE,
   ]
-  })
+})
 
 export const ChatsAddAction = (message) => createAction({
   endpoint: 'http://localhost:3000/chats',

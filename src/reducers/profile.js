@@ -10,8 +10,6 @@ const initialState = {
   error: false
 }
 
-// import {profile} from '../helpers/profileData'
-
 export const profileReducer = (state=initialState, action) => {
   switch (action.type) {
     case PROFILE_LOAD_REQUEST:

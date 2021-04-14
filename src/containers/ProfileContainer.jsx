@@ -1,33 +1,19 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React, { useEffect } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 
 import { profileLoadAction } from '../actions/profile'
 import { Profile } from '../pages/Profile'
 
-class ProfileContainerClass extends React.Component{
-  componentDidMount(){
-    this.props.profileLoadAction()
-  }
+export const ProfileContainer = () => {
+  const dispatch = useDispatch()
 
-  render(){
-    const {profile, isLoading, isError} = this.props
-    return <Profile data={profile} isLoading={isLoading} isError={isError}/>
-  }
+  useEffect(() => {
+    dispatch(profileLoadAction())
+  }, [])
+  
+  const profile = useSelector((state) => state.profile.entries)
+  const [isLoading,  isError] = useSelector((state) => [state.profile.loading, state.profile.error])
+
+  return <Profile data={profile} isLoading={isLoading} isError={isError}/>
+
 }
-
-function mapStateToProps(state){
-  const profile = state.profile.entries
-  return {
-    profile,
-    isLoading: state.profile.loading,
-    isError: state.profile.error,
-  }
-}
-
-function mapDispatchToProps(dispatch){
-  return {
-    profileLoadAction: () => dispatch(profileLoadAction()),
-  }
-}
-
-export const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileContainerClass)
