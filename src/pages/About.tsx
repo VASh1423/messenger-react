@@ -1,6 +1,7 @@
 import React from 'react'
+import './pages.css'
 
-export const About = () => {
+export const About: React.FC = () => {
   return (
     <div className="pages_container">
       <div>

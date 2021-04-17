@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Home = () => (
+export const Home: React.FC = () => (
   <div className="pages_container">
     <div>
       <h1>Главная</h1>

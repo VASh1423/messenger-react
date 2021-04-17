@@ -10,7 +10,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.ts', '.jsx', '.tsx'],
     alias: {
       components: path.resolve(__dirname, 'src', 'components'),
       pages: path.resolve(__dirname, 'src', 'pages'),
@@ -23,6 +23,10 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.tsx?$/, 
+        loader: "ts-loader"
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
