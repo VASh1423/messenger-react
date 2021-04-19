@@ -11,6 +11,7 @@ import { red } from '@material-ui/core/colors';
 import img from '../img/IMG_2.jpg';
 
 import './pages.css'
+import { profileType } from './types/profileTypes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Profile = ({data, isLoading, isError}) => {
+export const Profile: React.FC<profileType> = ({data, isLoading, isError}) => {
   const classes = useStyles()
 
   if (isLoading) {

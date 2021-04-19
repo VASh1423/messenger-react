@@ -1,27 +1,28 @@
 import React, { useState } from 'react'
 import { Fab, TextField } from '@material-ui/core'
 import { Send } from '@material-ui/icons'
+import { messageFormType } from '../types/types'
 
-export const MessageForm = (props) => {
+export const MessageForm: React.FC<messageFormType> = (props) => {
   const [dataForm, setDataForm] = useState({
     author: '',
     text: ''
   })
 
-  const handlerKeyDown = (event) => {
+  const handlerKeyDown = (event: React.KeyboardEvent): void => {
     if(event.key === 'Enter' && event.ctrlKey){
       handleMessageSend()
     }
   }
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setDataForm({
       ...dataForm,
       [event.target.name]: event.target.value
     })
   }
 
-  const handleMessageSend = () => {
+  const handleMessageSend = (): void => {
     const {author, text} = dataForm
     if(!author){
       alert('Enter name')
