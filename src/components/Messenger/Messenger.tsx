@@ -6,8 +6,9 @@ import { MessagesList } from '../MessagesList'
 import './Messenger.css'
 import { Grid } from '@material-ui/core'
 import { ChatsList } from '../ChatsList'
+import { messageType, messengerType } from '../types/types'
 
-export const Messenger = (props) => {
+export const Messenger: React.FC<messengerType> = (props) => {
   const {messages, handleMessageSend, chats, handleAddChat, handleDeleteMessage, handleDeleteChat, handleChatUnfire, isLoading, isError} = props
 
   if(isError){
@@ -26,7 +27,7 @@ export const Messenger = (props) => {
       </Grid>
       <Grid item={true} xs={9}>
       <div className='message-list'>
-      {messages ? (messages.length ? <MessagesList items={messages} author={messages} handleDeleteMessage={handleDeleteMessage}/>: <div>Пустой чат</div>) : <div>Выберите чат</div>}
+      {messages ? (messages.length ? <MessagesList items={messages} handleDeleteMessage={handleDeleteMessage}/>: <div>Пустой чат</div>) : <div>Выберите чат</div>}
       </div>
       {messages && <MessageForm onSend={handleMessageSend}/>}
       </Grid>

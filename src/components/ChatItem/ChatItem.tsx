@@ -9,6 +9,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import { Link } from 'react-router-dom';
 
 import './ChatItem.css'
+import { chatItemType } from '../types/types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ChatItem = ({chat, id, handleDeleteChat, fire, handleChatUnfire}) => {
+export const ChatItem: React.FC<chatItemType> = ({chat, id, handleDeleteChat, fire, handleChatUnfire}) => {
   const classes = useStyles();
 
   return (

@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { Fab, TextField } from '@material-ui/core'
 import { ControlPoint } from '@material-ui/icons'
 
-export const ChatForm = ({onSend}) => {
+import { chatFormType } from '../types/types'
+
+export const ChatForm: React.FC<chatFormType> = ({onSend}) => {
   const [chatName, setChatName] = useState('')
 
   const addChat = () => {
