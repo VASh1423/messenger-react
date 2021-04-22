@@ -6,7 +6,7 @@ import { MessagesList } from '../MessagesList'
 import './Messenger.css'
 import { Grid } from '@material-ui/core'
 import { ChatsList } from '../ChatsList'
-import { messageType, messengerType } from '../types/types'
+import { messengerType } from '../types/types'
 
 export const Messenger: React.FC<messengerType> = (props) => {
   const {messages, handleMessageSend, chats, handleAddChat, handleDeleteMessage, handleDeleteChat, handleChatUnfire, isLoading, isError} = props
@@ -21,17 +21,17 @@ export const Messenger: React.FC<messengerType> = (props) => {
 
   return (
     <div className='messenger'>
-    <Grid container wrap='nowrap' spacing={2}>
-      <Grid item={true} xs={3}>
-        <ChatsList chats={chats} onSend={handleAddChat} handleDeleteChat={handleDeleteChat} handleChatUnfire={handleChatUnfire}/>
+      <Grid className={'grid-container'} container wrap='nowrap' spacing={2}>
+        <Grid item={true} xs={3}>
+          <ChatsList chats={chats} onSend={handleAddChat} handleDeleteChat={handleDeleteChat} handleChatUnfire={handleChatUnfire}/>
+        </Grid>
+        <Grid item={true} xs={9}>
+          <div className='message-list'>
+          {messages ? (messages.length ? <MessagesList items={messages} handleDeleteMessage={handleDeleteMessage}/>: <div>Пустой чат</div>) : <div>Выберите чат</div>}
+          </div>
+          {messages && <MessageForm onSend={handleMessageSend}/>}
+        </Grid>
       </Grid>
-      <Grid item={true} xs={9}>
-      <div className='message-list'>
-      {messages ? (messages.length ? <MessagesList items={messages} handleDeleteMessage={handleDeleteMessage}/>: <div>Пустой чат</div>) : <div>Выберите чат</div>}
-      </div>
-      {messages && <MessageForm onSend={handleMessageSend}/>}
-      </Grid>
-    </Grid>
     </div>
   )
 }
