@@ -7,14 +7,14 @@ export const chats = [
       {
         id: 0,
         author: 'Author',
-        text: 'Hi!'
+        text: 'Hi!',
       },
       {
         id: 1,
         author: 'Author',
-        text: 'Test'
+        text: 'Test',
       },
-    ]
+    ],
   },
   {
     id: 1,
@@ -24,14 +24,14 @@ export const chats = [
       {
         id: 0,
         author: 'Author',
-        text: 'Привет!'
+        text: 'Привет!',
       },
       {
         id: 1,
         author: 'Author',
-        text: 'Тест'
+        text: 'Тест',
       },
-    ]
+    ],
   },
   {
     id: 2,
@@ -41,13 +41,13 @@ export const chats = [
       {
         id: 0,
         author: 'Author',
-        text: 'Хай!'
+        text: 'Хай!',
       },
       {
         id: 1,
         author: 'Author',
-        text: 'Как дела?'
+        text: 'Как дела?',
       },
-    ]
+    ],
   },
 ]

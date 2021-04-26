@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import { ChatItem } from '../ChatItem';
-import { ChatForm } from '../ChatForm';
+import { ChatItem } from '../ChatItem'
+import { ChatForm } from '../ChatForm'
 import { chatListType, messageType } from '../types/types'
 
 export const ChatsList: React.FC<chatListType> = ({chats, onSend, handleDeleteChat, handleChatUnfire}) => {
