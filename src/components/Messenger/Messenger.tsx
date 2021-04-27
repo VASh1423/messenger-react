@@ -22,7 +22,7 @@ export const Messenger: React.FC<messengerType> = (props) => {
   return (
     <div className='messenger'>
       <Grid className={'grid-container'} container wrap='nowrap' spacing={2}>
-        <Grid item={true} xs={3}>
+        <Grid className={'chat-list'} item={true} xs={3}>
           <ChatsList chats={chats} onSend={handleAddChat} handleDeleteChat={handleDeleteChat} handleChatUnfire={handleChatUnfire}/>
         </Grid>
         <Grid item={true} xs={9}>
