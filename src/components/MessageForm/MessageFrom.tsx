@@ -16,7 +16,7 @@ export const MessageForm: React.FC<messageFormType> = (props) => {
   }
 
   const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     setDataForm({
       ...dataForm,

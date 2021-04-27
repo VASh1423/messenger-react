@@ -17,7 +17,7 @@ export const botMiddleware = (store) => (next) => (action) => {
             chatId,
             author: 'Bot',
             text: randomMessage(author),
-          })
+          }),
         )
         store.dispatch(ChatFireAction({ chatId }))
       }, 1000)

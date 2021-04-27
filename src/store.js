@@ -31,9 +31,9 @@ export const initStore = () => {
         apiMiddleware,
         logger,
         botMiddleware,
-        reduxThunk
-      )
-    )
+        reduxThunk,
+      ),
+    ),
   )
 
   const persistor = persistStore(store)

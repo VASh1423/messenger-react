@@ -36,7 +36,7 @@ export const MessengerContainer = (props) => {
         ...message,
         id: nanoid(),
         chatId: +id,
-      })
+      }),
     )
   }
 
