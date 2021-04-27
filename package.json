@@ -12,7 +12,7 @@
     "start": "concurrently \"npm:dev-serve\" \"npm:json-server\"",
     "lint": "eslint src/",
     "precommit": "lint-staged",
-    "prettier": "pretty-quick --staged"
+    "prettier": "prettier --write src/**/*.ts"
   },
   "author": "Shokarev Vladimir",
   "license": "ISC",
@@ -76,5 +76,12 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js, jsx, ts, tsx}": [
+      "eslint --max-warnings=0",
+      "prettier --write",
+      "git add"
+    ]
   }
 }
