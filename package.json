@@ -82,10 +82,6 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js, jsx, ts, tsx}": [
-      "eslint src/ --max-warnings=0",
-      "prettier --write src/**/*.{js, jsx, ts, tsx}",
-      "git add"
-    ]
-  }
+    "*.(js|jsx|ts|tsx)": ["npm run lint:write", "git add"]
+  },
 }
