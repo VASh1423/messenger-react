@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
-import {Provider} from 'react-redux'
-import {ConnectedRouter} from 'connected-react-router'
-import { PersistGate } from "redux-persist/integration/react"
+import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'connected-react-router'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import { Header } from './components/Header'
 import { Layout } from './layout/Layout'
@@ -11,7 +10,7 @@ import { history, initStore } from './store'
 
 import './style/main.css'
 
-const {store, persistor} = initStore()
+const { store, persistor } = initStore()
 
 ReactDom.render(
   <Provider store={store}>
@@ -21,5 +20,6 @@ ReactDom.render(
         <Layout/>
       </ConnectedRouter>
     </PersistGate>
-  </Provider>
-, document.getElementById('root'))
+  </Provider>,
+  document.getElementById('root'),
+)

@@ -1,19 +1,19 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardMedia from '@material-ui/core/CardMedia'
+import CardContent from '@material-ui/core/CardContent'
+import Avatar from '@material-ui/core/Avatar'
+import Typography from '@material-ui/core/Typography'
+import { red } from '@material-ui/core/colors'
 
-import img from '../img/IMG_2.jpg';
+import img from '../img/IMG_2.jpg'
 
 import './pages.css'
-import { profileType } from './types/profileTypes';
+import { profileType } from './types/profileTypes'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     maxWidth: 345,
   },
@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
-}));
+}))
 
-export const Profile: React.FC<profileType> = ({data, isLoading, isError}) => {
+export const Profile: React.FC<profileType> = ({ data, isLoading, isError }) => {
   const classes = useStyles()
 
-  if (isLoading) {
+  if(isLoading){
     return <div>Loading...</div>
   }
   return (
@@ -54,5 +54,5 @@ export const Profile: React.FC<profileType> = ({data, isLoading, isError}) => {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

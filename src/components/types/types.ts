@@ -10,7 +10,7 @@ export type messagesType = {
   text: string;
   author: string;
   handleDeleteMessage: (id: string | number) => void;
-  id: string | number 
+  id: string | number;
 }
 
 export type messageFormType = {

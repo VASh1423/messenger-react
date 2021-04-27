@@ -7,4 +7,4 @@ export const Error: React.FC = () => (
       <p>Страница с ошибкой</p>
     </div>
   </div>
-) 
+)

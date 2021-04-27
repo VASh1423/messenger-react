@@ -6,7 +6,7 @@ import { messageFormType } from '../types/types'
 export const MessageForm: React.FC<messageFormType> = (props) => {
   const [dataForm, setDataForm] = useState({
     author: '',
-    text: ''
+    text: '',
   })
 
   const handlerKeyDown = (event: React.KeyboardEvent): void => {
@@ -18,22 +18,20 @@ export const MessageForm: React.FC<messageFormType> = (props) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setDataForm({
       ...dataForm,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     })
   }
 
   const handleMessageSend = (): void => {
-    const {author, text} = dataForm
+    const { author, text } = dataForm
     if(!author){
-      alert('Enter name')
       return
     }
     if(!text){
-      alert('Enter text')
       return
     }
     props.onSend(dataForm)
-    setDataForm({...dataForm, text: ''})
+    setDataForm({ ...dataForm, text: '' })
   }
 
   return (

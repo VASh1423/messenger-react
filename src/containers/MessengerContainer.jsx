@@ -1,11 +1,17 @@
 import React, { useEffect } from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { nanoid } from 'nanoid'
-import {push} from 'connected-react-router'
-import {useParams} from 'react-router-dom'
+import { push } from 'connected-react-router'
+import { useParams } from 'react-router-dom'
 
 import { Messenger } from 'components/Messenger'
-import {ChatsLoadAction, ChatsMessageSendAction, ChatsAddAction, ChatsMessageDeleteAction, ChatDeleteAction, ChatUnfireAction} from '../actions/chats'
+import {
+  ChatsLoadAction,
+  ChatsMessageSendAction,
+  ChatsAddAction,
+  ChatsMessageDeleteAction,
+  ChatDeleteAction,
+  ChatUnfireAction} from '../actions/chats'
 
 export const MessengerContainer = (props) => {
   const dispatch = useDispatch()
@@ -14,7 +20,7 @@ export const MessengerContainer = (props) => {
   const chats = useSelector((state) => state.chats.entries)
   const messages = chats[id] ? chats[id].messages : null
 
-  const [isLoading,  isError] = useSelector((state) => [state.chats.loading, state.chats.error])
+  const [isLoading, isError] = useSelector((state) => [state.chats.loading, state.chats.error])
 
   useEffect(() => {
     dispatch(ChatsLoadAction())
@@ -24,7 +30,7 @@ export const MessengerContainer = (props) => {
     dispatch(ChatsMessageSendAction({
       ...message,
       id: nanoid(),
-      chatId: +id
+      chatId: +id,
     }))
   }
 
@@ -36,7 +42,7 @@ export const MessengerContainer = (props) => {
   }
 
   const handleDeleteMessage = (id) => {
-    dispatch(ChatsMessageDeleteAction({id, chatId}))
+    dispatch(ChatsMessageDeleteAction( {id, chatId }))
   }
 
   const handleDeleteChat = (id) => {
@@ -47,10 +53,10 @@ export const MessengerContainer = (props) => {
     dispatch(ChatUnfireAction({id}))
   }
 
-  return <Messenger 
-      messages={messages} 
-      handleMessageSend={handleMessageSend} 
-      chats={chats} 
+  return <Messenger
+      messages={messages}
+      handleMessageSend={handleMessageSend}
+      chats={chats}
       handleAddChat={handleAddChat}
       handleDeleteMessage={handleDeleteMessage}
       handleDeleteChat={handleDeleteChat}

@@ -7,4 +7,4 @@ export const Home: React.FC = () => (
       <p>Главная страница</p>
     </div>
   </div>
-) 
+)

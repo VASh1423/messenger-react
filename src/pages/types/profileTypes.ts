@@ -1,5 +1,5 @@
 export type profileType = {
-  data: any[]; //TODO array of objects 
+  data: any[];
   isLoading: boolean;
   isError: boolean;
 }

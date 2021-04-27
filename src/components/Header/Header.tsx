@@ -5,26 +5,24 @@ import { Link } from 'react-router-dom'
 
 import './Header.css'
 
-export const Header: React.FC = () => {
-  return (
-    <div className="container">
-      <div className="title">
-        <Link to="/chat">
-          <ListItemText primary="Messenger" />
-        </Link>
-        <Link to="/">
-          <ListItemText primary="Главная" />
-        </Link>
-        <Link to="/profile">
-          <ListItemText primary="Профиль" />
-        </Link>
-        <Link to="/about">
-          <ListItemText primary="О нас" />
-        </Link>
-        <Link to="/pagenotfound">
-          <ListItemText primary="Ошибка" />
-        </Link>
-      </div>
+export const Header: React.FC = () => (
+  <div className="container">
+    <div className="title">
+      <Link to="/chat">
+        <ListItemText primary="Messenger" />
+      </Link>
+      <Link to="/">
+        <ListItemText primary="Главная" />
+      </Link>
+      <Link to="/profile">
+        <ListItemText primary="Профиль" />
+      </Link>
+      <Link to="/about">
+        <ListItemText primary="О нас" />
+      </Link>
+      <Link to="/pagenotfound">
+        <ListItemText primary="Ошибка" />
+      </Link>
     </div>
-  );
-}
+  </div>
+)

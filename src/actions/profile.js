@@ -3,17 +3,17 @@ export const PROFILE_LOAD_SUCCESS = 'PROFILE_LOAD_SUCCESS'
 export const PROFILE_LOAD_FAILURE = 'PROFILE_LOAD_FAILURE'
 
 export const profileLoadRequestAction = () => ({
-  type: PROFILE_LOAD_REQUEST
+  type: PROFILE_LOAD_REQUEST,
 })
 
 export const profileLoadSuccessAction = (data) => ({
   type: PROFILE_LOAD_SUCCESS,
-  payload: data
+  payload: data,
 })
 
 export const profileLoadFailureAction = (error) => ({
   type: PROFILE_LOAD_FAILURE,
-  payload: error
+  payload: error,
 })
 
 export const profileLoadAction = () => {
@@ -22,7 +22,7 @@ export const profileLoadAction = () => {
       dispatch(profileLoadRequestAction())
       const result = await fetch('/api/profiles')
       dispatch(profileLoadSuccessAction(await result.json()))
-    } catch (error) {
+    } catch (error){
       dispatch(profileLoadFailureAction(error))
     }
   }
