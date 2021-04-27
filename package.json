@@ -11,7 +11,7 @@
     "build": "webpack --mode production",
     "start": "concurrently \"npm:dev-serve\" \"npm:json-server\"",
     "lint": "eslint src/",
-    "precommit": "lint-staged",
+    "precommit": "\"npm:lint\"",
     "prettier": "prettier --write src/**/*"
   },
   "author": "Shokarev Vladimir",
