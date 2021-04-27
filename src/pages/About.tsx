@@ -3,9 +3,9 @@ import './pages.css'
 
 export const About: React.FC = () => (
   <div className="pages_container">
-    <div>
+  <div>
       <h1>О нас</h1>
-      <p>Страница о нас</p>
+<p>Страница о нас</p>
     </div>
   </div>
 )
