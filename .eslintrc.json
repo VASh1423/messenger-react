@@ -20,7 +20,8 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "rules": {
         "max-len": ["error", 100, 2, {"ignoreUrls": true}],
