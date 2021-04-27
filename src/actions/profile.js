@@ -22,7 +22,7 @@ export const profileLoadAction = () => {
       dispatch(profileLoadRequestAction())
       const result = await fetch('/api/profiles')
       dispatch(profileLoadSuccessAction(await result.json()))
-    } catch (error){
+    } catch (error) {
       dispatch(profileLoadFailureAction(error))
     }
   }

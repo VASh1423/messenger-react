@@ -11,7 +11,7 @@ const initialState = {
 }
 
 export const profileReducer = (state = initialState, action) => {
-  switch (action.type){
+  switch (action.type) {
     case PROFILE_LOAD_REQUEST:
       return {
         ...state,

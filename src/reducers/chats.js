@@ -18,8 +18,8 @@ const initialState = {
   error: false,
 }
 
-export const chatReducer = (state=initialState, action) => {
-  switch (action.type){
+export const chatReducer = (state = initialState, action) => {
+  switch (action.type) {
     case CHATS_LOAD_REQUEST:
       return {
         ...state,
@@ -43,11 +43,13 @@ export const chatReducer = (state=initialState, action) => {
         entries: {
           [action.payload.chatId]: {
             messages: {
-              $push: [{
-                id: action.payload.id,
-                text: action.payload.text,
-                author: action.payload.author,
-              }],
+              $push: [
+                {
+                  id: action.payload.id,
+                  text: action.payload.text,
+                  author: action.payload.author,
+                },
+              ],
             },
           },
         },

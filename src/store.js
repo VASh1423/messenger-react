@@ -25,13 +25,15 @@ export const initStore = () => {
   const store = createStore(
     persistReducer(persistConfig, createRootReducer(history)),
     initialStore,
-    composeWithDevTools(applyMiddleware(
-      routerMiddleware(history),
-      apiMiddleware,
-      logger,
-      botMiddleware,
-      reduxThunk,
-    )),
+    composeWithDevTools(
+      applyMiddleware(
+        routerMiddleware(history),
+        apiMiddleware,
+        logger,
+        botMiddleware,
+        reduxThunk
+      )
+    )
   )
 
   const persistor = persistStore(store)

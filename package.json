@@ -11,7 +11,8 @@
     "build": "webpack --mode production",
     "start": "concurrently \"npm:dev-serve\" \"npm:json-server\"",
     "lint": "eslint src/",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "prettier": "prettier --write src/**/*.tsx"
   },
   "author": "Shokarev Vladimir",
   "license": "ISC",
@@ -77,7 +78,7 @@
   },
   "lint-staged": {
     "src/**/*.{js, jsx, ts, tsx}": [
-      "node_modules/.bin/eslint src/ --max-warnings=0",
+      "eslint src/ --max-warnings=0",
       "prettier --write",
       "git add"
     ]

@@ -19,29 +19,27 @@ export const CHATS_DELETE = 'CHATS_DELETE'
 export const FIRE_CHAT = 'FIRE_CHAT'
 export const UNFIRE_CHAT = 'UNFIRE_CHAT'
 
-export const ChatsMessageSendAction = (message) => createAction({
-  endpoint: 'http://localhost:3000/messages',
-  method: 'POST',
-  body: JSON.stringify(message),
-  headers: { 'Content-Type': 'application/json' },
-  types: [
-    CHATS_MESSAGE_SEND_REQUEST,
-    CHATS_MESSAGE_SEND_SUCCESS,
-    CHATS_MESSAGE_SEND_FAILURE,
-  ],
-})
+export const ChatsMessageSendAction = (message) =>
+  createAction({
+    endpoint: 'http://localhost:3000/messages',
+    method: 'POST',
+    body: JSON.stringify(message),
+    headers: { 'Content-Type': 'application/json' },
+    types: [
+      CHATS_MESSAGE_SEND_REQUEST,
+      CHATS_MESSAGE_SEND_SUCCESS,
+      CHATS_MESSAGE_SEND_FAILURE,
+    ],
+  })
 
-export const ChatsAddAction = (message) => createAction({
-  endpoint: 'http://localhost:3000/chats',
-  method: 'POST',
-  body: JSON.stringify(message),
-  headers: { 'Content-Type': 'application/json' },
-  types: [
-    CHAT_ADD_REQUEST,
-    CHAT_ADD_SUCCESS,
-    CHAT_ADD_FAILURE,
-  ],
-})
+export const ChatsAddAction = (message) =>
+  createAction({
+    endpoint: 'http://localhost:3000/chats',
+    method: 'POST',
+    body: JSON.stringify(message),
+    headers: { 'Content-Type': 'application/json' },
+    types: [CHAT_ADD_REQUEST, CHAT_ADD_SUCCESS, CHAT_ADD_FAILURE],
+  })
 
 export const ChatsMessageDeleteAction = (message) => ({
   type: CHATS_MESSAGE_DELETE,
@@ -83,7 +81,7 @@ export const ChatsLoadAction = () => {
       dispatch(ChatsLoadRequestAction())
       const result = await fetch('/api/chats?_embed=messages')
       dispatch(ChatsLoadSuccessAction(await result.json()))
-    } catch (error){
+    } catch (error) {
       dispatch(ChatsLoadFailureAction(error))
     }
   }

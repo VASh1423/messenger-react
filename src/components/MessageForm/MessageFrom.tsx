@@ -10,12 +10,14 @@ export const MessageForm: React.FC<messageFormType> = (props) => {
   })
 
   const handlerKeyDown = (event: React.KeyboardEvent): void => {
-    if(event.key === 'Enter' && event.ctrlKey){
+    if (event.key === 'Enter' && event.ctrlKey) {
       handleMessageSend()
     }
   }
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setDataForm({
       ...dataForm,
       [event.target.name]: event.target.value,
@@ -24,10 +26,10 @@ export const MessageForm: React.FC<messageFormType> = (props) => {
 
   const handleMessageSend = (): void => {
     const { author, text } = dataForm
-    if(!author){
+    if (!author) {
       return
     }
-    if(!text){
+    if (!text) {
       return
     }
     props.onSend(dataForm)

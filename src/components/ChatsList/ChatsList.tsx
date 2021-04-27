@@ -11,7 +11,7 @@ export const ChatsList: React.FC<chatListType> = ({
   handleChatUnfire,
 }) => (
   <>
-    <ChatForm onSend={onSend}/>
+    <ChatForm onSend={onSend} />
     {chats.map((chat: messageType) => (
       <ChatItem
         chat={chat}

@@ -26,10 +26,14 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export const Profile: React.FC<profileType> = ({ data, isLoading, isError }) => {
+export const Profile: React.FC<profileType> = ({
+  data,
+  isLoading,
+  isError,
+}) => {
   const classes = useStyles()
 
-  if(isLoading){
+  if (isLoading) {
     return <div>Loading...</div>
   }
   return (
@@ -37,16 +41,12 @@ export const Profile: React.FC<profileType> = ({ data, isLoading, isError }) => 
       <Card className={classes.root}>
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar} src={img}/>
+            <Avatar aria-label="recipe" className={classes.avatar} src={img} />
           }
           title={`${data[0].secondName} ${data[0].firstName}`}
           subheader={data[0].dateOfBirth}
         />
-        <CardMedia
-          className={classes.media}
-          image={img}
-          title="Paella dish"
-        />
+        <CardMedia className={classes.media} image={img} title="Paella dish" />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             {data[0].aboutMe}

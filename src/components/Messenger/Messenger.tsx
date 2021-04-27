@@ -21,18 +21,18 @@ export const Messenger: React.FC<messengerType> = (props) => {
     isError,
   } = props
 
-  if(isError){
+  if (isError) {
     return <div>Error</div>
   }
 
-  if(isLoading){
+  if (isLoading) {
     return <div>Loading...</div>
   }
 
   return (
-    <div className='messenger'>
-      <Grid className='grid-container' container wrap='nowrap' spacing={2}>
-        <Grid className='chat-list' item={true} xs={3}>
+    <div className="messenger">
+      <Grid className="grid-container" container wrap="nowrap" spacing={2}>
+        <Grid className="chat-list" item={true} xs={3}>
           <ChatsList
             chats={chats}
             onSend={handleAddChat}
@@ -41,19 +41,21 @@ export const Messenger: React.FC<messengerType> = (props) => {
           />
         </Grid>
         <Grid item={true} xs={9}>
-          <div className='message-list'>
-            { messages
-              ? (messages.length
-                ? <MessagesList
-                    items={messages}
-                    handleDeleteMessage={handleDeleteMessage}
+          <div className="message-list">
+            {messages ? (
+              messages.length ? (
+                <MessagesList
+                  items={messages}
+                  handleDeleteMessage={handleDeleteMessage}
                 />
-                : <div>Пустой чат</div>
+              ) : (
+                <div>Пустой чат</div>
               )
-              : <div>Выберите чат</div>
-            }
+            ) : (
+              <div>Выберите чат</div>
+            )}
           </div>
-          { messages && <MessageForm onSend={handleMessageSend}/> }
+          {messages && <MessageForm onSend={handleMessageSend} />}
         </Grid>
       </Grid>
     </div>

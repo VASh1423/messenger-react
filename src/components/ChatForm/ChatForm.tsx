@@ -8,7 +8,7 @@ export const ChatForm: React.FC<chatFormType> = ({ onSend }) => {
   const [chatName, setChatName] = useState('')
 
   const addChat = () => {
-    if(!chatName.length) return
+    if (!chatName.length) return
     const chat = {
       title: chatName,
       messages: [],
@@ -29,7 +29,7 @@ export const ChatForm: React.FC<chatFormType> = ({ onSend }) => {
           onChange={(event) => setChatName(event.target.value)}
         />
         <Fab variant="round" color="primary">
-          <ControlPoint onClick={addChat}/>
+          <ControlPoint onClick={addChat} />
         </Fab>
       </div>
     </>

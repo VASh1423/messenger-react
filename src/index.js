@@ -16,10 +16,10 @@ ReactDom.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <ConnectedRouter history={history}>
-        <Header/>
-        <Layout/>
+        <Header />
+        <Layout />
       </ConnectedRouter>
     </PersistGate>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 )
