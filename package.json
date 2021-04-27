@@ -10,10 +10,9 @@
     "json-server": "json-server --port 3000 --watch db.json --delay 1000",
     "build": "webpack --mode production",
     "start": "concurrently \"npm:dev-serve\" \"npm:json-server\"",
-    "lint": "eslint --debug src/",
-    "lint:write": "eslint --debug src/ --fix",
-    "prettier": "prettier --write src/**/*.js",
+    "lint": "eslint src/",
     "precommit": "lint-staged",
+    "prettier": "prettier --write src/**/*.ts"
   },
   "author": "Shokarev Vladimir",
   "license": "ISC",
@@ -77,15 +76,10 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "src/**/*.{js, jsx, ts, tsx}": [
+    "*.{js, jsx, ts, tsx}": [
       "eslint src/ --max-warnings=0",
-      "prettier --write src/**/*.{js, jsx, ts, tsx}",
+      "prettier --write",
       "git add"
     ]
   }
