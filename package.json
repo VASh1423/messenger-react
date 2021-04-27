@@ -80,7 +80,7 @@
   "lint-staged": {
     "src/**/*.js src/**/*.jsx src/**/*.ts src/**/*.tsx": [
       "node_modules/.bin/eslint --max-warnings=0",
-      "prettier --write",
+      
       "git add"
     ]
   }
