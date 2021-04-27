@@ -10,9 +10,10 @@
     "json-server": "json-server --port 3000 --watch db.json --delay 1000",
     "build": "webpack --mode production",
     "start": "concurrently \"npm:dev-serve\" \"npm:json-server\"",
-    "lint": "eslint src/",
+    "lint": "eslint --debug src/",
+    "lint:write": "eslint --debug src/ --fix",
+    "prettier": "prettier --write src/**/*.js",
     "precommit": "lint-staged",
-    "prettier": "prettier --write src/**/*.tsx"
   },
   "author": "Shokarev Vladimir",
   "license": "ISC",
