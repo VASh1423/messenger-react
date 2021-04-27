@@ -1,13 +1,13 @@
-.messenger{
+.messenger {
   height: 80vh;
 }
 
-.grid-container{
+.grid-container {
   height: 100%;
   max-width: 100%;
 }
 
-.message-list{
+.message-list {
   display: flex;
   flex-direction: column;
   background-color: bisque;

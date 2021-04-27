@@ -12,7 +12,10 @@ export const ProfileContainer = () => {
   }, [])
 
   const profile = useSelector((state) => state.profile.entries)
-  const [isLoading, isError] = useSelector((state) => [state.profile.loading, state.profile.error])
+  const [isLoading, isError] = useSelector((state) => [
+    state.profile.loading,
+    state.profile.error,
+  ])
 
-  return <Profile data={profile} isLoading={isLoading} isError={isError}/>
+  return <Profile data={profile} isLoading={isLoading} isError={isError} />
 }

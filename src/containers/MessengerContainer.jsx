@@ -11,49 +11,56 @@ import {
   ChatsAddAction,
   ChatsMessageDeleteAction,
   ChatDeleteAction,
-  ChatUnfireAction} from '../actions/chats'
+  ChatUnfireAction,
+} from '../actions/chats'
 
 export const MessengerContainer = (props) => {
   const dispatch = useDispatch()
-  const {id} = useParams()
+  const { id } = useParams()
 
   const chats = useSelector((state) => state.chats.entries)
   const messages = chats[id] ? chats[id].messages : null
 
-  const [isLoading, isError] = useSelector((state) => [state.chats.loading, state.chats.error])
+  const [isLoading, isError] = useSelector((state) => [
+    state.chats.loading,
+    state.chats.error,
+  ])
 
   useEffect(() => {
     dispatch(ChatsLoadAction())
   }, [])
 
   const handleMessageSend = (message) => {
-    dispatch(ChatsMessageSendAction({
-      ...message,
-      id: nanoid(),
-      chatId: +id,
-    }))
+    dispatch(
+      ChatsMessageSendAction({
+        ...message,
+        id: nanoid(),
+        chatId: +id,
+      })
+    )
   }
 
   const handleAddChat = (title) => {
-    title.id=chats.length
+    title.id = chats.length
 
-    dispatch(ChatsAddAction({...title}))
+    dispatch(ChatsAddAction({ ...title }))
     dispatch(push(`/chat/${title.id}`))
   }
 
   const handleDeleteMessage = (id) => {
-    dispatch(ChatsMessageDeleteAction( {id, chatId }))
+    dispatch(ChatsMessageDeleteAction({ id, chatId }))
   }
 
   const handleDeleteChat = (id) => {
-    dispatch(ChatDeleteAction({id}))
+    dispatch(ChatDeleteAction({ id }))
   }
 
   const handleChatUnfire = (id) => {
-    dispatch(ChatUnfireAction({id}))
+    dispatch(ChatUnfireAction({ id }))
   }
 
-  return <Messenger
+  return (
+    <Messenger
       messages={messages}
       handleMessageSend={handleMessageSend}
       chats={chats}
@@ -64,4 +71,5 @@ export const MessengerContainer = (props) => {
       isLoading={isLoading}
       isError={isError}
     />
+  )
 }

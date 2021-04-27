@@ -1,4 +1,4 @@
-.message{
+.message {
   background-color: lightblue;
   padding: 5px 12px;
   border-radius: 12px;
@@ -6,16 +6,16 @@
   margin: 5px;
   max-width: 70%;
 
-  &-author{
+  &-author {
     color: grey;
     font-size: 14px;
   }
 
-  &-bot{
+  &-bot {
     align-self: flex-start;
   }
 
-  &-sender{
+  &-sender {
     align-self: flex-end;
   }
 }

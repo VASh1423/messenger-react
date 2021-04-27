@@ -1,11 +1,11 @@
-.listItemFire{
+.listItemFire {
   background-color: rgb(172, 214, 248);
 }
 
-.listItemFire:hover{
+.listItemFire:hover {
   background-color: rgb(223, 219, 219);
 }
 
-.listItems:hover{
+.listItems:hover {
   background-color: rgb(223, 219, 219);
 }

@@ -7,8 +7,7 @@
         "airbnb",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "airbnb/hooks",
-        "plugin:prettier/recommended"
+        "airbnb/hooks"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -20,8 +19,7 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint",
-        "prettier"
+        "@typescript-eslint"
     ],
     "rules": {
         "max-len": ["error", 100, 2, {"ignoreUrls": true}],
